@@ -16,23 +16,4 @@ import * as Prisma from './internal/prismaNamespaceBrowser.ts'
 export { Prisma }
 export * as $Enums from './enums.ts'
 export * from './enums.ts';
-/**
- * Model Event
- * 
- */
-export type Event = Prisma.EventModel
-/**
- * Model Venue
- * 
- */
-export type Venue = Prisma.VenueModel
-/**
- * Model Ticket
- * 
- */
-export type Ticket = Prisma.TicketModel
-/**
- * Model User
- * 
- */
-export type User = Prisma.UserModel
+

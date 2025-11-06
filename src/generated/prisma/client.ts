@@ -28,8 +28,8 @@ export * from "./enums.ts"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Events
- * const events = await prisma.event.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -43,23 +43,4 @@ export { Prisma }
 path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node")
 path.join(process.cwd(), "src/generated/prisma/libquery_engine-darwin-arm64.dylib.node")
 
-/**
- * Model Event
- * 
- */
-export type Event = Prisma.EventModel
-/**
- * Model Venue
- * 
- */
-export type Venue = Prisma.VenueModel
-/**
- * Model Ticket
- * 
- */
-export type Ticket = Prisma.TicketModel
-/**
- * Model User
- * 
- */
-export type User = Prisma.UserModel
+
