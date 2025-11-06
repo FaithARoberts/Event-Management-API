@@ -55,7 +55,7 @@ model User {
     firstName       String
     lastName        String
     email           String  
-    password_hash   String
+    passwordHash   String
     role userRole   @default(USER)
 
     tickets     Ticket[]    @relation("userTickets")
