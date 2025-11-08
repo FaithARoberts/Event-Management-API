@@ -1,6 +1,37 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import prisma from './config/db.js';
+import {findVenueByAddress,createVenue,findVenueById,updateVenue,deleteVenue} from "./repositories/venueRepo.js";
+
+//TESTING FUNCTIONS
+async function testVenueRepo() {
+
+  const venue = await createVenue({
+    name: "Test location 1",
+    address: "1800 place street",
+    capacity: 150,
+  });
+  console.log("Created Venue: ", venue);
+
+  const venueByAddress = await findVenueByAddress("1800 place street");
+  console.log("Venue At Address:", venueByAddress);
+
+  const venueById = await findVenueById(venue.id);
+  console.log(`Venue With ID ${venue.id}`, venueById);
+
+  const updatedVenue = await updateVenue(venue.id, {capacity:100,});
+  console.log(`Updated Venue With ID ${venue.id}`, updatedVenue);
+
+   const deletedVenue = await deleteVenue(venue.id);
+  console.log(`Venue With ID ${venue.id}`, deletedVenue);
+
+}
+
+
+
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,3 +58,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
+//run test functions:
+console.log("Running Tests...");
+testVenueRepo();
