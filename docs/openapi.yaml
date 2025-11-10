@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: Event Manager API
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080
+    description: Local development servers
+tags:
+  - name: Users
+    description: User Endpoints
+  - name: Venues
+    description: Venue Endpoints
+  - name: Events
+    description: Event Endpoints
+  - name: Tickets
+    description: Ticket Endpoints
+  - name: Auth
+    description: Authentication Endpoints
+paths:
+  /users:
+    $ref: /paths/users.yaml
+  /users/{id}:
+    $ref: /paths/users_id.yaml
+  /tickets:
+    $ref: /paths/tickets.yaml
+  /tickets/{id}:
+    $ref: /paths/tickets_id.yaml
+  /venues:
+    $ref: /paths/venues.yaml
+  /venues/{id}:
+    $ref: /paths/venues_id.yaml
+  /events:
+    $ref: /paths/events.yaml
+  /events/{id}:
+    $ref: /paths/events_id.yaml
+  /auth:
+    $ref: /paths/auth.yaml
