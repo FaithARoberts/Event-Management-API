@@ -6,7 +6,7 @@ export async function findEventsByVenueId(venueId) {
         where: { venueId },
         select: {
             id: true,
-            venueId: true ,
+            venueId: true,
             name: true,
             date: true,
             capacity: true,
