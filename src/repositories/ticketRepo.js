@@ -6,7 +6,7 @@ export async function findTicketsByEventsId(eventId) {
         where: { eventId },
         select: {
             id: true,
-            eventId: true ,
+            eventId: true,
             userId: true,
             admits: true,
             isUsed: true,
@@ -20,7 +20,7 @@ export async function createTicket(data) {
         data,
         select: {
             id: true,
-            eventId: true ,
+            eventId: true,
             userId: true,
             admits: true,
             isUsed: true,
@@ -34,7 +34,7 @@ export async function findTicketById(id) {
         where: { id },
         select: {
             id: true,
-            eventId: true ,
+            eventId: true,
             userId: true,
             admits: true,
             isUsed: true,
@@ -51,7 +51,7 @@ export async function updateTicket(id, updates) {
             data: updates,
             select: {
                 id: true,
-            eventId: true ,
+            eventId: true,
             userId: true,
             admits: true,
             isUsed: true,
