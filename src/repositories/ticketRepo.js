@@ -1,7 +1,7 @@
 import prisma from '../config/db.js';
 
 //get ticket by venue id 
-export async function findTicketsByEventsId(eventId) {
+export async function findTicketsByEventId(eventId) {
     return await prisma.ticket.findMany({
         where: { eventId },
         select: {
