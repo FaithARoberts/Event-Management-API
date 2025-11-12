@@ -1,7 +1,7 @@
 import * as venueRepository from '../repositories/venueRepo.js';
 
-export async function getAllVenues() {
-    return await venueRepository.getAll();
+export async function getVenuesByAddress(address) {
+    return await venueRepository.findVenueByAddress(address);
 }
 
 export async function getVenueById(id){
@@ -9,11 +9,11 @@ export async function getVenueById(id){
 }
 
 export async function createNewVenue(newVenue){
-
+    return await venueRepository.createVenue(newVenue);
 }
 
 export async function updateExistingVenue(id, venueInfo){
-    
+    return await venueRepository.updateVenue(id, venueInfo);
 }
 
 export async function deleteVenueById(id){
