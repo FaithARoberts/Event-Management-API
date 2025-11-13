@@ -5,7 +5,7 @@ export async function getVenuesByAddress(address) {
 }
 
 export async function getVenueById(id){
-    return await venueRepository.findVenueByAddress(id);
+    return await venueRepository.findVenueById(id);
 }
 
 export async function createNewVenue(newVenue){
