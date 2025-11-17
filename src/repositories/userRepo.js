@@ -10,6 +10,7 @@ export async function findUserByRole(role) {
             lastName: true,
             email: true,
             role: true,
+            
         },
     });
 }
