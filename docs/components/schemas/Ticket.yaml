@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    readOnly: true
+    type: int
+    example: 1
+  eventId:
+    type: int
+    example: 1
+  userId:
+    type: int
+    example: 1
+  admits:
+    type: int
+    example: 2
+  isUsed:
+    type: boolean
+    example: false

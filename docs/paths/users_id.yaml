@@ -1,3 +1,98 @@
 get:
+  summary: returns 1 user by id
+  tags:
+    - Users
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of user to select
+      schema:
+        type: integer
+        example: 1
+  responses: 
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml
+
 put:
+  summary: updates the details of 1 user by id
+  tags:
+    - Users
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of venue to select
+      schema:
+        type: integer
+        example: 1
+    - name: firstName
+      in: query
+      required: false
+      description: new user firstName
+      schema:
+        type: string
+        example: John
+    - name: lastName
+      in: query
+      required: false
+      description: new user lastName
+      schema:
+        type: string
+        example: Doe
+    - name: email
+      in: query
+      required: false
+      description: new user email
+      schema:
+        type: string
+        example: johndoe@gmail.com
+    - name: password
+      in: query
+      required: false
+      description: new password
+      schema:
+        type: string
+        example: 1234Doe
+  responses: 
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml
 delete:
+  summary: deletes 1 user by id
+  tags:
+    - Users
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of user to delete
+      schema:
+        type: integer
+        example: 1
+  responses: 
+    '204':
+      description: NO CONTENT
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml

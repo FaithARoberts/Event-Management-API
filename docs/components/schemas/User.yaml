@@ -1,0 +1,19 @@
+type: object
+properties:
+  id:
+    readOnly: true
+    type: int
+    example: 1
+  firstName:
+    type: string
+    example: John
+  lastName:
+    type: string
+    example: Doe
+  email:
+    type: string
+    example: johndoe@gmail.com
+  role:
+    type: string
+    example: USER
+  
