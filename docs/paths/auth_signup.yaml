@@ -1,0 +1,53 @@
+post: 
+  summary: Create new User
+  tags:
+    - Users
+  parameters:
+      - name: firstName
+        in: query
+        required: true
+        description: user's first name
+        schema:
+          type: string
+          example: John
+      - name: lastName
+        in: query
+        required: true
+        description: user's last name
+        schema:
+          type: string
+          example: Doe
+      - name: email
+        in: query
+        required: true
+        description: user's email
+        schema:
+          type: string
+          example: johndoe@gmail.com
+      - name: password
+        in: query
+        required: true
+        description: password of new user
+        schema:
+          type: integer
+          example: 1234Doe
+  responses:
+    '201':
+      description: Created Successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+              example: 'New user created with id of 1'
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '409':
+      description: Email already in use
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/User.yaml
