@@ -1,0 +1,5 @@
+description: Invalid input
+content: 
+  applications/json:
+    schema:
+      $ref: '../schemas/ValidationError.yaml'

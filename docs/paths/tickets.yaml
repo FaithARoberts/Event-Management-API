@@ -1,0 +1,42 @@
+get:
+  summary: List all tickets
+  tags:
+    - Tickets
+  parameters:
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Ticket.yaml
+post:
+  summary: Create new ticket
+  tags:
+    - Tickets
+  parameters:
+      - name: eventId
+        in: query
+        required: true
+        description: event the ticket belongs to
+        schema:
+          type: integer
+          example: 1
+      - name: admits
+        in: query
+        required: true
+        description: the amount of people the ticket admits at the door
+        schema:
+          type: integer
+          example: 2
+  responses:
+    '201':
+      description: Created Successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Ticket.yaml

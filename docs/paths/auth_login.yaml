@@ -1,0 +1,41 @@
+post: 
+  summary: Log in to a user by email and password
+  tags:
+    - Users
+  parameters:
+      - name: email
+        in: query
+        required: true
+        description: user's email
+        schema:
+          type: string
+          example: johndoe@gmail.com
+      - name: password
+        in: query
+        required: true
+        description: password of new user
+        schema:
+          type: integer
+          example: 1234Doe
+  responses:
+    '200':
+      description: Logged In Successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+              example: '{JWT access token}'
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      description: Invalid Credentials
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: invalid credentials

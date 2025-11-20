@@ -1,0 +1,49 @@
+get:
+  summary: List all venues
+  tags:
+    - Venues
+  parameters:
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Venue.yaml
+post:
+  summary: Create new venue
+  tags:
+    - Venues
+  parameters:
+      - name: address
+        in: query
+        required: true
+        description: address of the venue
+        schema:
+          type: string
+          example: 111 Arena Avenue
+      - name: name
+        in: query
+        required: true
+        description: name of the venue
+        schema:
+          type: string
+          example: The Arena
+      - name: capacity
+        in: query
+        required: true
+        description: maximum number of attendees
+        schema:
+          type: integer
+          example: 200
+  responses:
+    '201':
+      description: Created Successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Venue.yaml

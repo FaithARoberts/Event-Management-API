@@ -1,0 +1,49 @@
+get:
+  summary: List all events
+  tags:
+    - Events
+  parameters:
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Event.yaml
+post:
+  summary: Create new event
+  tags:
+    - Events
+  parameters:
+      - name: date
+        in: query
+        required: true
+        description: date of the event
+        schema:
+          type: DateTime
+          example: 1/1/25 11:11:11
+      - name: name
+        in: query
+        required: true
+        description: name of the event
+        schema:
+          type: string
+          example: John Doe's Concert
+      - name: venueId
+        in: query
+        required: true
+        description: venue the event is taking place at
+        schema:
+          type: integer
+          example: 1
+  responses:
+    '201':
+      description: Created Successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Event.yaml

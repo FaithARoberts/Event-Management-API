@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    readOnly: true
+    type: int
+    example: 1
+  address:
+    type: string
+    example: 111 Arena Avenue
+  name:
+    type: string
+    example: The Arena
+  capacity:
+    type: int
+    example: 200
+  events:
+    type: array
+    example:

@@ -1,0 +1,83 @@
+get:
+  summary: returns 1 ticket by id
+  tags:
+    - Tickets
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of ticket to select
+      schema:
+        type: integer
+        example: 1
+  responses: 
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/ticket.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml
+put:
+  summary: updates the details of 1 ticket by id
+  tags:
+    - Tickets
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of venue to select
+      schema:
+        type: integer
+        example: 1
+    - name: isUsed
+      in: query
+      required: false
+      description: new usage status
+      schema:
+        type: boolean
+        example: false
+    - name: admits
+      in: query
+      required: false
+      description: new ticket amount admitted
+      schema:
+        type: integer
+        example: 2
+  responses: 
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Ticket.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml
+delete:
+  summary: deletes 1 ticket by id
+  tags:
+    - Tickets
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of ticket to delete
+      schema:
+        type: integer
+        example: 1
+  responses: 
+    '204':
+      description: NO CONTENT
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml

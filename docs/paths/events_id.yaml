@@ -1,0 +1,90 @@
+get:
+  summary: returns 1 event by id
+  tags:
+    - Events
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of event to select
+      schema:
+        type: integer
+        example: 1
+  responses: 
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Event.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml
+put:
+  summary: updates the details of 1 event by id
+  tags:
+    - Events
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of event to select
+      schema:
+        type: integer
+        example: 1
+    - name: name
+      in: query
+      required: false
+      description: new event name
+      schema:
+        type: string
+        example: John Doe's Concert
+    - name: date
+      in: query
+      required: false
+      description: new event date
+      schema:
+        type: DateTime
+        example: 1/1/25 11:11:11
+    - name: venueId
+      in: query
+      required: false
+      description: new event venue
+      schema:
+        type: integer
+        example: 1
+  responses: 
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Event.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml
+delete:
+  summary: deletes 1 event by id
+  tags:
+    - Events
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of event to delete
+      schema:
+        type: integer
+        example: 1
+  responses: 
+    '204':
+      description: NO CONTENT
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404': 
+      $ref: ../components/schemas/NotFoundError.yaml
