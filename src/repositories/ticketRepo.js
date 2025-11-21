@@ -1,77 +1,63 @@
-import prisma from '../config/db.js';
+import prisma from '../config/db/js';
 
-//get ticket by venue id 
-export async function findTicketsByEventId(eventId) {
-    return await prisma.ticket.findMany({
-        where: { eventId },
+export async function findTicketsByEventId(eventId){
+    return await prisma.user.findUnique({
+        where: {eventId},
         select: {
             id: true,
-            eventId: true,
             userId: true,
+            eventId: true,
             admits: true,
-            isUsed: true,
-        },
-    });
+            isUsed: true
+        }
+    })
 }
 
-//create new ticket
-export async function createTicket(data) {  
-    return await prisma.ticket.create({
-        data,
+export async function findTicketById(id){
+    return await prisma.user.findUnique({
+        where: {id},
         select: {
             id: true,
-            eventId: true,
             userId: true,
+            eventId: true,
             admits: true,
-            isUsed: true,
-        },
-    });
+            isUsed: true
+        }
+    })
 }
 
-//get ticket by id
-export async function findTicketById(id) {
-    return await prisma.ticket.findUnique({
+export async function createTicket(data){
+    return await prisma.ticket.create({data: data});
+}
+
+export async function updateTicket(id, data){
+    try {
+        const updatedTicket = await prisma.ticket.update({
         where: { id },
+        data: data,
         select: {
             id: true,
-            eventId: true,
             userId: true,
+            eventId: true,
             admits: true,
-            isUsed: true,
-        },
+            isUsed: true
+        }
+        });
+        return updatedTicket;
+    } catch (error) {
+        if (error.code === 'P2025') return null;
+        throw error;
+    }
+}
+
+export async function deleteTicket(id){
+    try {
+    const deletedTicket = await prisma.user.delete({
+      where: { id },
     });
-}
-
-
-//update ticket by ticketId
-export async function updateTicket(id, updates) {
-    try {
-        return await prisma.ticket.update({
-            where: { id },
-            data: updates,
-            select: {
-                id: true,
-            eventId: true,
-            userId: true,
-            admits: true,
-            isUsed: true,
-            },
-        });
-    } catch (err) {
-        if (err.code === 'P2025') return null;
-        throw err;
-    }
-}
-
-//delete ticket by id
-export async function deleteTicket(id) {
-    try {
-        await prisma.ticket.delete({
-            where: { id },
-        });
-        return true;
-    } catch (err) {
-        if (err.code === 'P2025') return null;
-        throw err;
-    }
+    return deletedTicket;
+  } catch (error) {
+    if (error.code === 'P2025') return null;
+    throw error;
+  }
 }

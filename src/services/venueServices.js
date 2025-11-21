@@ -1,21 +1,45 @@
-import * as venueRepository from '../repositories/venueRepo.js';
+import { findVenueByAddress, findVenueById, createVenue, updateVenue, deleteVenue } from '../repositories/venueRepo.js';
 
-export async function getVenuesByAddress(address) {
-    return await venueRepository.findVenueByAddress(address);
+export async function getVenueByAddress(address) {
+    const venue = await findVenueByAddress(address);
+    if(venue) return venue;
+    else{
+        const error = new Error(`Cannot find venue with address ${address}`);
+        error.status = 404;
+        throw error;
+    }
 }
 
 export async function getVenueById(id){
-    return await venueRepository.findVenueById(id);
+    const venue = await findVenueById(id);
+    if(venue) return venue;
+    else{
+        const error = new Error(`Cannot find venue with id ${id}`);
+        error.status = 404;
+        throw error;
+    }
 }
 
 export async function createNewVenue(newVenue){
-    return await venueRepository.createVenue(newVenue);
+    return await createVenue(newVenue);
 }
 
 export async function updateExistingVenue(id, venueInfo){
-    return await venueRepository.updateVenue(id, venueInfo);
+    const updatedVenue = await updateVenue(id, venueInfo);
+    if(updatedVenue) return updatedVenue;
+    else{
+        const error = new Error(`Cannot find venue with id ${id}`);
+        error.status = 404;
+        throw error;
+    }
 }
 
 export async function deleteVenueById(id){
-    return await venueRepository.deleteVenue(id);
+    const result = await deleteVenue(id);
+    if (result) return;
+    else {
+        const error = new Error(`Cannot find venue with id ${id}`);
+        error.status = 404;
+        throw error;
+    }
 }
