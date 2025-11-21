@@ -7,25 +7,25 @@ export async function getUserByRoleHandler(req, res, next){
 }
 
 export async function getUserByIdHandler(req, res, next){
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.user.id);
     const user = await getUserById(id);
     res.status(200).json(user);
 }
 
 export async function getUserTicketsHandler(req, res, next){
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.user.id);
     const tickets = await getUserTickets(id);
     res.status(200).json(tickets);
 }
 
 export async function getUserEventsHandler(req, res, next){
-    const id = rparseInt(req.params.id);
+    const id = parseInt(req.user.id);
     const events = await getUserEvents(id);
     res.status(200).json(events);
 }
 
 export async function updateUserbyIdHandler(req, res, next){
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.user.id);
 
     const updates = {};
     if (req.body.firstName) updates.firstName = req.body.firstName;
