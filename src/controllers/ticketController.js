@@ -1,4 +1,9 @@
-import {getTicketsByEventId, getTicketById, createNewTicket, updateTicketById, deleteTicketById} from '../services/ticketServices.js';
+import {getAllTickets, getTicketsByEventId, getTicketById, createNewTicket, updateTicketById, deleteTicketById} from '../services/ticketServices.js';
+
+export async function getAllTicketsHandler(req, res, next){
+    const tickets = await getAllTickets();
+        res.status(200).json(tickets);
+}
 
 export async function getTicketByEventIdHandler(req, res, next){
     const eventId = parseInt(req.body.eventId);
