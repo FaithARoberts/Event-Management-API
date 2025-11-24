@@ -1,15 +1,10 @@
 get:
-  summary: returns 1 user by id
+  summary: returns current user
   tags:
     - Users
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: Id of user to select
-      schema:
-        type: integer
-        example: 1
+  security:
+    - bearerAuth: []
   responses: 
     '200':
       description: OK
@@ -25,17 +20,10 @@ get:
       $ref: ../components/schemas/NotFoundError.yaml
 
 put:
-  summary: updates the details of 1 user by id
+  summary: updates the details of the current user
   tags:
     - Users
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: Id of venue to select
-      schema:
-        type: integer
-        example: 1
     - name: firstName
       in: query
       required: false
@@ -64,6 +52,8 @@ put:
       schema:
         type: string
         example: 1234Doe
+  security:
+    - bearerAuth: []
   responses: 
     '200':
       description: OK
@@ -78,17 +68,12 @@ put:
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml
 delete:
-  summary: deletes 1 user by id
+  summary: deletes the current user
   tags:
     - Users
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: Id of user to delete
-      schema:
-        type: integer
-        example: 1
+  security:
+    - bearerAuth: []
   responses: 
     '204':
       description: NO CONTENT

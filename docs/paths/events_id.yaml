@@ -56,6 +56,8 @@ put:
       schema:
         type: integer
         example: 1
+  security:
+    - bearerAuth: []
   responses: 
     '200':
       description: OK
@@ -81,10 +83,14 @@ delete:
       schema:
         type: integer
         example: 1
+  security:
+    - bearerAuth: []
   responses: 
     '204':
       description: NO CONTENT
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml
