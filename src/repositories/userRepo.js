@@ -1,5 +1,12 @@
 import prisma from '../config/db.js';
 
+//get all users for admin
+export async function findAllUsers(){
+    return await prisma.user.findMany({
+        omit: {password: true},
+    });
+}
+
 //get users by role
 export async function findUserByRole(role) {
     return await prisma.user.findMany({
@@ -63,7 +70,7 @@ export async function deleteUser(id) {
 }
 
 //Get User ticket
-export async function GetUserTicket(id) {
+export async function findUserTickets(id) {
     return await prisma.ticket.findMany({
         where: {userId:id},
         select: {

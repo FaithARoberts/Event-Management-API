@@ -16,5 +16,4 @@ export function authenticate(req, res, next){
         console.log(err.name, err.message); 
         return res.status(401).json({error: 'Invalid or expired Auth token'});
     }
-
 }
