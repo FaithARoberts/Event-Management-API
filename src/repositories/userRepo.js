@@ -70,7 +70,7 @@ export async function deleteUser(id) {
 }
 
 //Get User ticket
-export async function GetUserTicket(id) {
+export async function findUserTickets(id) {
     return await prisma.ticket.findMany({
         where: {userId:id},
         select: {
