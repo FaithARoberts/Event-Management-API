@@ -1,14 +1,15 @@
 import express from 'express';
-import * as userController from '../controllers/userController.js';
-import {} from '../middleware/validateUser.js';
+import {getAllUsersHandler, getUserByIdHandler, getUserTicketsHandler, getUserEventsHandler, updateUserbyIdHandler, removeUserHandler} from '../controllers/userController.js';
+import { authorizeRoles } from '../middleware/authorizeRoles.js';
+import {authenticate} from '../middleware/authenticate.js';
 
 const router = express.Router();
 
-router.get('/', );
-router.get('/me', );
-router.get('/me/tickets',);
-router.get('/me/events',);
-router.put('/me',);
-router.delete('/me',);
+router.get('/', authenticate, authorizeRoles('ADMIN'), getAllUsersHandler );
+router.get('/me', authenticate, getUserByIdHandler);
+router.get('/me/tickets', authenticate, getUserTicketsHandler);
+router.get('/me/events', authenticate, getUserEventsHandler);
+router.put('/me', authenticate, updateUserbyIdHandler);
+router.delete('/me', authenticate, removeUserHandler);
 
 export default router;
