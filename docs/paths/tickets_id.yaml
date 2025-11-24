@@ -18,7 +18,7 @@ get:
           schema:
             type: array
             items:
-              $ref: ../components/schemas/ticket.yaml
+              $ref: ../components/schemas/Ticket.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '404': 

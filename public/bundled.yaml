@@ -379,7 +379,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ticket'
+                  $ref: '#/components/schemas/Ticket'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -951,25 +951,6 @@ components:
           type: array
           items:
             type: string
-    ticket:
-      type: object
-      properties:
-        id:
-          readOnly: true
-          type: int
-          example: 1
-        eventId:
-          type: int
-          example: 1
-        userId:
-          type: int
-          example: 1
-        admits:
-          type: int
-          example: 2
-        isUsed:
-          type: boolean
-          example: false
     Venue:
       type: object
       properties:
