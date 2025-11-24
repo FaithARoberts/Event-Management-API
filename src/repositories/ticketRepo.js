@@ -4,6 +4,10 @@ export async function findAllTickets(){
     return await prisma.ticket.findMany();
 }
 
+export async function findAllTickets(){
+    return await prisma.ticket.findMany();
+}
+
 export async function findTicketsByEventId(eventId){
     return await prisma.user.findUnique({
         where: {eventId},
