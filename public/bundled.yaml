@@ -225,6 +225,10 @@ paths:
                   $ref: '#/components/schemas/User'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFoundError'
     put:
@@ -280,6 +284,10 @@ paths:
                   $ref: '#/components/schemas/User'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFoundError'
     delete:
@@ -301,6 +309,10 @@ paths:
           description: NO CONTENT
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFoundError'
   /tickets:
@@ -484,6 +496,8 @@ paths:
                   $ref: '#/components/schemas/Venue'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
   /venues/{id}:
     get:
       summary: returns 1 venue by id
@@ -558,6 +572,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFoundError'
     delete:
@@ -581,6 +597,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFoundError'
   /events:
@@ -637,6 +655,8 @@ paths:
                   $ref: '#/components/schemas/Event'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
   /events/{id}:
     get:
       summary: returns 1 event by id
@@ -709,6 +729,10 @@ paths:
                   $ref: '#/components/schemas/Event'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFoundError'
     delete:
@@ -732,6 +756,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFoundError'
   /auth/login:
@@ -957,4 +983,6 @@ components:
           type: string
           example: Item not found
     UnauthorizedError:
-      description: Access token is missing or invalid
+      description: Not authenticated
+    Forbidden:
+      description: 'Forbidden: insufficient permission'

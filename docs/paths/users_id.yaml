@@ -23,6 +23,10 @@ get:
               $ref: ../components/schemas/User.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml
 
@@ -79,6 +83,10 @@ put:
               $ref: ../components/schemas/User.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml
 delete:
@@ -100,5 +108,9 @@ delete:
       description: NO CONTENT
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml

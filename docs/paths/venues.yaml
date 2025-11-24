@@ -51,3 +51,5 @@ post:
               $ref: ../components/schemas/Venue.yaml
     '401':
       $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
