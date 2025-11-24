@@ -1,4 +1,8 @@
-import {findTicketsByEventId, findTicketById, createTicket, deleteTicket } from '../repositories/ticketRepo.js';
+import {findAllTickets, findTicketsByEventId, findTicketById, createTicket, deleteTicket } from '../repositories/ticketRepo.js';
+
+export async function getAllTickets(){
+    return await findAllTickets();
+}
 
 export async function getTicketsByEventId(eventId) {
     const tickets = await findTicketsByEventId(eventId);

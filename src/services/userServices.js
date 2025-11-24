@@ -1,5 +1,9 @@
-import {findUserByRole, findUserById, updateUser, deleteUser, GetUserTicket, findUserEvents} from '../repositories/userRepo.js';
+import {findAllUsers, findUserByRole, findUserById, updateUser, deleteUser, findUserTickets, findUserEvents} from '../repositories/userRepo.js';
 import bcrypt from 'bcrypt';
+
+export async function getAllUsers(){
+    return await findAllUsers();
+}
 
 export async function getUserByRole(role) {
     return await findUserByRole(role);
@@ -16,7 +20,7 @@ export async function getUserById(id){
 }
 
 export async function getUserTickets(id){
-    let tickets = await GetUserTicket(id);
+    let tickets = await findUserTickets(id);
     if(tickets) return tickets;
     else{
         const error = new Error(`Cannot find tickets for user with id ${id}`);

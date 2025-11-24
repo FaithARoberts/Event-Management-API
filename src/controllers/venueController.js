@@ -1,4 +1,24 @@
-import {getVenueByAddress, getVenueById, createNewVenue, updateExistingVenue, deleteVenueById} from '../services/venueServices.js';
+import {getAllVenues, getVenueByAddress, getVenueById, createNewVenue, updateExistingVenue, deleteVenueById} from '../services/venueServices.js';
+
+export async function getAllVenuesHandler(req, res) {
+  const {
+    search,
+    sortBy = 'id',
+    sortOrder = 'asc',
+    limit = 100,
+    offset = 0,
+  } = req.query;
+
+  const filter = {};
+  if (search) filter.search = search;
+  filter.sortBy = sortBy;
+  filter.sortOrder = sortOrder;
+  filter.limit = parseInt(limit);
+  filter.offset = parseInt(offset);
+
+  let result = await getAllVenues(filter);
+  res.status(200).json(result);
+}
 
 export async function getVenuesByAddressHandler(req, res, next){
     const address = req.body.address;

@@ -1,5 +1,33 @@
 import prisma from '../config/db.js';
 
+//get all events for admin
+export async function findAllEvents(filter) {
+  const conditions = {};
+
+  if (filter.search) {
+    conditions.OR = [
+      { name: { contains: filter.search, mode: 'insensitive' } },
+    ];
+  }
+
+  const events = await prisma.event.findMany({
+    where: conditions,
+    select: {
+        id: true,
+        venueId: true,
+        name: true,
+        date: true,
+        capacity: true,
+        isPublished: true,
+    },
+    orderBy: { [filter.sortBy]: filter.sortOrder },
+    take: filter.limit,
+    skip: filter.offset,
+  });
+
+  return events;
+}
+
 //get events by venue id 
 export async function findEventsByVenueId(venueId) {
     return await prisma.venue.findMany({

@@ -1,4 +1,8 @@
-import { findEventsByVenueId, createEvent, findEventById, updateEvent, deleteEvent } from '../repositories/eventRepo.js';
+import { findAllEvents, findEventsByVenueId, createEvent, findEventById, updateEvent, deleteEvent } from '../repositories/eventRepo.js';
+
+export async function getAllEvents(filter){
+    return await findAllEvents(filter);
+}
 
 export async function getEventByVenueId(venueId) {
     const event = await findEventsByVenueId(venueId);
