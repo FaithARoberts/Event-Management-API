@@ -1,4 +1,8 @@
-import { findVenueByAddress, findVenueById, createVenue, updateVenue, deleteVenue } from '../repositories/venueRepo.js';
+import { findAllVenues, findVenueByAddress, findVenueById, createVenue, updateVenue, deleteVenue } from '../repositories/venueRepo.js';
+
+export async function getAllVenues(filter){
+    return await findAllVenues(filter);
+}
 
 export async function getVenueByAddress(address) {
     const venue = await findVenueByAddress(address);

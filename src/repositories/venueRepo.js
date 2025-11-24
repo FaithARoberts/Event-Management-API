@@ -1,4 +1,31 @@
-import prisma from '../config/db/js';
+import prisma from '../config/db.js';
+
+export async function findAllVenues(filter){
+  const conditions = {};
+
+    if (filter.search) {
+      conditions.OR = [
+        { name: { contains: filter.search, mode: 'insensitive' } },
+        { events: { contains: filter.search, mode: 'insensitive' } },
+      ];
+    }
+
+    const venues = await prisma.event.findMany({
+      where: conditions,
+      select: {
+          id: true,
+          name: true,
+          address: true,
+          capacity: true,
+          events: true
+      },
+      orderBy: { [filter.sortBy]: filter.sortOrder },
+      take: filter.limit,
+      skip: filter.offset,
+    });
+
+    return venues;
+}
 
 export async function findVenueByAddress(address) {
     return await prisma.venue.findUnique({

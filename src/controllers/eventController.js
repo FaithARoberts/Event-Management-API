@@ -1,4 +1,24 @@
-import {getEventByVenueId, getEventById, createNewEvent, updateExistingEvent, deleteExistingEvent} from '../services/eventServices.js';
+import {getAllEvents, getEventByVenueId, getEventById, createNewEvent, updateExistingEvent, deleteExistingEvent} from '../services/eventServices.js';
+
+export async function getAllEventsHandler(req, res) {
+  const {
+    search,
+    sortBy = 'id',
+    sortOrder = 'asc',
+    limit = 100,
+    offset = 0,
+  } = req.query;
+
+  const filter = {};
+  if (search) filter.search = search;
+  filter.sortBy = sortBy;
+  filter.sortOrder = sortOrder;
+  filter.limit = parseInt(limit);
+  filter.offset = parseInt(offset);
+
+  let result = await getAllEvents(filter);
+  res.status(200).json(result);
+}
 
 export async function getEventByVenueIdHandler(req,res,next){
     const venueId = parseInt(req.body.venueId);

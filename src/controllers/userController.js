@@ -1,4 +1,9 @@
-import {getUserByRole, getUserById, getUserTickets, getUserEvents, updateUserById, removeUser} from '../services/userServices.js';
+import {getAllUsers, getUserByRole, getUserById, getUserTickets, getUserEvents, updateUserById, removeUser} from '../services/userServices.js';
+
+export async function getAllUsersHandler(req, res){
+    const users = await getAllUsers();
+    res.status(200).json(users);
+}
 
 export async function getUserByRoleHandler(req, res, next){
     const role = req.body.role;

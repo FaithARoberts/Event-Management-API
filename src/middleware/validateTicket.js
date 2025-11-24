@@ -1,5 +1,5 @@
 import { param, body, oneOf } from 'express-validator';
-import { handleValidationErrors } from './handleValidationErrors.jss';
+import { handleValidationErrors } from './handleValidationError.js';
 
 export const validateTicketId = [
     param('id')

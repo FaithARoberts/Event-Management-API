@@ -1,5 +1,5 @@
-import { param, body, oneOf } from 'express-validator';
-import { handleValidationErrors } from './handleValidationErrors.jss';
+import { param, body, oneOf, query } from 'express-validator';
+import { handleValidationErrors } from './handleValidationError.js';
 
 export const validateEventId = [
     param('id')
@@ -8,6 +8,9 @@ export const validateEventId = [
 
     handleValidationErrors,
 ];
+
+const allowedSortFields = ['name',];
+const allowedSortOrders = ['asc', 'desc'];
 
 export const validateEventQuery = [
   query('search').optional().isString().withMessage('search must be a string'),

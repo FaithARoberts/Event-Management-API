@@ -1,5 +1,9 @@
-import {findUserByRole, findUserById, updateUser, deleteUser, GetUserTicket, findUserEvents} from '../repositories/userRepo.js';
+import {findAllUsers, findUserByRole, findUserById, updateUser, deleteUser, GetUserTicket, findUserEvents} from '../repositories/userRepo.js';
 import bcrypt from 'bcrypt';
+
+export async function getAllUsers(){
+    return await findAllUsers();
+}
 
 export async function getUserByRole(role) {
     return await findUserByRole(role);
