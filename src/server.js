@@ -26,6 +26,10 @@ app.use('/api/venues', venueRoutes);
 const specs = YAML.load('./public/bundled.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
