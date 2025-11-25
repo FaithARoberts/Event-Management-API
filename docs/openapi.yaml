@@ -18,20 +18,28 @@ tags:
     description: Authentication Endpoints
 paths:
   /users:
-    $ref: /paths/users.yaml
+    $ref: ./paths/users.yaml
+  /users/me:
+    $ref: ./paths/users_me.yaml
+  /users/me/ticket:
+    $ref: ./paths/users_me_tickets.yaml
+  /users/me/event:
+    $ref: ./paths/users_me_events.yaml
   /users/{id}:
-    $ref: /paths/users_id.yaml
+    $ref: ./paths/users_id.yaml
   /tickets:
-    $ref: /paths/tickets.yaml
+    $ref: ./paths/tickets.yaml
   /tickets/{id}:
-    $ref: /paths/tickets_id.yaml
+    $ref: ./paths/tickets_id.yaml
   /venues:
-    $ref: /paths/venues.yaml
+    $ref: ./paths/venues.yaml
   /venues/{id}:
-    $ref: /paths/venues_id.yaml
+    $ref: ./paths/venues_id.yaml
   /events:
-    $ref: /paths/events.yaml
+    $ref: ./paths/events.yaml
   /events/{id}:
-    $ref: /paths/events_id.yaml
-  /auth:
-    $ref: /paths/auth.yaml
+    $ref: ./paths/events_id.yaml
+  /auth/login:
+    $ref: ./paths/auth_login.yaml
+  /auth/signup:
+    $ref: ./paths/auth_signup.yaml

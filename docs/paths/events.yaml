@@ -38,6 +38,8 @@ post:
         schema:
           type: integer
           example: 1
+  security:
+    - bearerAuth: []
   responses:
     '201':
       description: Created Successfully
@@ -47,3 +49,7 @@ post:
             type: array
             items:
               $ref: ../components/schemas/Event.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml

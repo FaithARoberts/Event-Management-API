@@ -1,15 +1,8 @@
 get:
-  summary: return user by id
+  summary: returns current user
   tags:
     - Users
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: id of user to return
-      schema:
-        type: integer
-        example: 1
   security:
     - bearerAuth: []
   responses: 
@@ -23,25 +16,14 @@ get:
               $ref: ../components/schemas/User.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
-    '401':
-      $ref: ../components/responses/UnauthorizedError.yaml
-    '403':
-      $ref: ../components/responses/Forbidden.yaml
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml
 
 put:
-  summary: updates the details of user by id
+  summary: updates the details of the current user
   tags:
     - Users
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: id of user to update
-      schema:
-        type: integer
-        example: 1
     - name: firstName
       in: query
       required: false
@@ -83,24 +65,13 @@ put:
               $ref: ../components/schemas/User.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
-    '401':
-      $ref: ../components/responses/UnauthorizedError.yaml
-    '403':
-      $ref: ../components/responses/Forbidden.yaml
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml
 delete:
-  summary: deletes user by id
+  summary: deletes the current user
   tags:
     - Users
   parameters:
-    - name: id
-      in: path
-      required: true
-      description: id of user to delete
-      schema:
-        type: integer
-        example: 1
   security:
     - bearerAuth: []
   responses: 
@@ -108,9 +79,5 @@ delete:
       description: NO CONTENT
     '400':
       $ref: ../components/responses/BadRequest.yaml
-    '401':
-      $ref: ../components/responses/UnauthorizedError.yaml
-    '403':
-      $ref: ../components/responses/Forbidden.yaml
     '404': 
       $ref: ../components/schemas/NotFoundError.yaml

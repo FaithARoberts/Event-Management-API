@@ -1,0 +1,988 @@
+openapi: 3.1.0
+info:
+  title: Event Manager API
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080
+    description: Local development servers
+tags:
+  - name: Users
+    description: User Endpoints
+  - name: Venues
+    description: Venue Endpoints
+  - name: Events
+    description: Event Endpoints
+  - name: Tickets
+    description: Ticket Endpoints
+  - name: Auth
+    description: Authentication Endpoints
+paths:
+  /users:
+    get:
+      summary: List all users
+      tags:
+        - Users
+      parameters: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create new User
+      tags:
+        - Users
+      parameters:
+        - name: firstName
+          in: query
+          required: true
+          description: user's first name
+          schema:
+            type: string
+            example: John
+        - name: lastName
+          in: query
+          required: true
+          description: user's last name
+          schema:
+            type: string
+            example: Doe
+        - name: email
+          in: query
+          required: true
+          description: user's email
+          schema:
+            type: string
+            example: johndoe@gmail.com
+        - name: password
+          in: query
+          required: true
+          description: password of new user
+          schema:
+            type: integer
+            example: 1234Doe
+      responses:
+        '201':
+          description: Created Successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /users/me:
+    get:
+      summary: returns current user
+      tags:
+        - Users
+      parameters: null
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    put:
+      summary: updates the details of the current user
+      tags:
+        - Users
+      parameters:
+        - name: firstName
+          in: query
+          required: false
+          description: new user firstName
+          schema:
+            type: string
+            example: John
+        - name: lastName
+          in: query
+          required: false
+          description: new user lastName
+          schema:
+            type: string
+            example: Doe
+        - name: email
+          in: query
+          required: false
+          description: new user email
+          schema:
+            type: string
+            example: johndoe@gmail.com
+        - name: password
+          in: query
+          required: false
+          description: new password
+          schema:
+            type: string
+            example: 1234Doe
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      summary: deletes the current user
+      tags:
+        - Users
+      parameters: null
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: NO CONTENT
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /users/me/ticket:
+    get:
+      summary: returns current user's tickets
+      tags:
+        - Users
+      parameters: null
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /users/me/event:
+    get:
+      summary: returns current user's tickets
+      tags:
+        - Users
+      parameters: null
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /users/{id}:
+    get:
+      summary: return user by id
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of user to return
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    put:
+      summary: updates the details of user by id
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of user to update
+          schema:
+            type: integer
+            example: 1
+        - name: firstName
+          in: query
+          required: false
+          description: new user firstName
+          schema:
+            type: string
+            example: John
+        - name: lastName
+          in: query
+          required: false
+          description: new user lastName
+          schema:
+            type: string
+            example: Doe
+        - name: email
+          in: query
+          required: false
+          description: new user email
+          schema:
+            type: string
+            example: johndoe@gmail.com
+        - name: password
+          in: query
+          required: false
+          description: new password
+          schema:
+            type: string
+            example: 1234Doe
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      summary: deletes user by id
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of user to delete
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: NO CONTENT
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /tickets:
+    get:
+      summary: List all tickets
+      tags:
+        - Tickets
+      parameters: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+    post:
+      summary: Create new ticket
+      tags:
+        - Tickets
+      parameters:
+        - name: eventId
+          in: query
+          required: true
+          description: event the ticket belongs to
+          schema:
+            type: integer
+            example: 1
+        - name: admits
+          in: query
+          required: true
+          description: the amount of people the ticket admits at the door
+          schema:
+            type: integer
+            example: 2
+      responses:
+        '201':
+          description: Created Successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+  /tickets/{id}:
+    get:
+      summary: returns 1 ticket by id
+      tags:
+        - Tickets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of ticket to select
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ticket'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    put:
+      summary: updates the details of 1 ticket by id
+      tags:
+        - Tickets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of venue to select
+          schema:
+            type: integer
+            example: 1
+        - name: isUsed
+          in: query
+          required: false
+          description: new usage status
+          schema:
+            type: boolean
+            example: false
+        - name: admits
+          in: query
+          required: false
+          description: new ticket amount admitted
+          schema:
+            type: integer
+            example: 2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      summary: deletes 1 ticket by id
+      tags:
+        - Tickets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of ticket to delete
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '204':
+          description: NO CONTENT
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /venues:
+    get:
+      summary: List all venues
+      tags:
+        - Venues
+      parameters: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+    post:
+      summary: Create new venue
+      tags:
+        - Venues
+      parameters:
+        - name: address
+          in: query
+          required: true
+          description: address of the venue
+          schema:
+            type: string
+            example: 111 Arena Avenue
+        - name: name
+          in: query
+          required: true
+          description: name of the venue
+          schema:
+            type: string
+            example: The Arena
+        - name: capacity
+          in: query
+          required: true
+          description: maximum number of attendees
+          schema:
+            type: integer
+            example: 200
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Created Successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /venues/{id}:
+    get:
+      summary: returns 1 venue by id
+      tags:
+        - Venues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of venue to select
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    put:
+      summary: updates the details of 1 venue by id
+      tags:
+        - Venues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of venue to select
+          schema:
+            type: integer
+            example: 1
+        - name: name
+          in: query
+          required: false
+          description: new venue name
+          schema:
+            type: string
+            example: The Arena
+        - name: address
+          in: query
+          required: false
+          description: new venue address
+          schema:
+            type: string
+            example: 111 Arena Avenue
+        - name: capacity
+          in: query
+          required: false
+          description: new venue capacity
+          schema:
+            type: integer
+            example: 200
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      summary: deletes 1 venue by id
+      tags:
+        - Venues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of venue to delete
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: NO CONTENT
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /events:
+    get:
+      summary: List all events
+      tags:
+        - Events
+      parameters: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      summary: Create new event
+      tags:
+        - Events
+      parameters:
+        - name: date
+          in: query
+          required: true
+          description: date of the event
+          schema:
+            type: DateTime
+            example: 1/1/25 11:11:11
+        - name: name
+          in: query
+          required: true
+          description: name of the event
+          schema:
+            type: string
+            example: John Doe's Concert
+        - name: venueId
+          in: query
+          required: true
+          description: venue the event is taking place at
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Created Successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /events/{id}:
+    get:
+      summary: returns 1 event by id
+      tags:
+        - Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of event to select
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    put:
+      summary: updates the details of 1 event by id
+      tags:
+        - Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of event to select
+          schema:
+            type: integer
+            example: 1
+        - name: name
+          in: query
+          required: false
+          description: new event name
+          schema:
+            type: string
+            example: John Doe's Concert
+        - name: date
+          in: query
+          required: false
+          description: new event date
+          schema:
+            type: DateTime
+            example: 1/1/25 11:11:11
+        - name: venueId
+          in: query
+          required: false
+          description: new event venue
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      summary: deletes 1 event by id
+      tags:
+        - Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of event to delete
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: NO CONTENT
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /auth/login:
+    post:
+      summary: Log in to a user by email and password
+      tags:
+        - Users
+      parameters:
+        - name: email
+          in: query
+          required: true
+          description: user's email
+          schema:
+            type: string
+            example: johndoe@gmail.com
+        - name: password
+          in: query
+          required: true
+          description: password of new user
+          schema:
+            type: integer
+            example: 1234Doe
+      responses:
+        '200':
+          description: Logged In Successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: '{JWT access token}'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Invalid Credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid credentials
+  /auth/signup:
+    post:
+      summary: Create new User
+      tags:
+        - Users
+      parameters:
+        - name: firstName
+          in: query
+          required: true
+          description: user's first name
+          schema:
+            type: string
+            example: John
+        - name: lastName
+          in: query
+          required: true
+          description: user's last name
+          schema:
+            type: string
+            example: Doe
+        - name: email
+          in: query
+          required: true
+          description: user's email
+          schema:
+            type: string
+            example: johndoe@gmail.com
+        - name: password
+          in: query
+          required: true
+          description: password of new user
+          schema:
+            type: integer
+            example: 1234Doe
+      responses:
+        '201':
+          description: Created Successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: New user created with id of 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Email already in use
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: int
+          example: 1
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: johndoe@gmail.com
+        role:
+          type: string
+          example: USER
+    ValidationError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Validation failed
+        details:
+          type: array
+          items:
+            type: string
+    Ticket:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: int
+          example: 1
+        eventId:
+          type: int
+          example: 1
+        userId:
+          type: int
+          example: 1
+        admits:
+          type: int
+          example: 2
+        isUsed:
+          type: boolean
+          example: false
+    Event:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: int
+          example: 1
+        date:
+          type: DateTime
+          example: 01-01-2025 11:11:11
+        name:
+          type: string
+          example: John Doe's Concert
+        venueId:
+          type: int
+          example: 1
+        userId:
+          type: int
+          example: 1
+        capacity:
+          type: int
+          example: 200
+        isPublished:
+          type: boolean
+          example: false
+    ticket:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: int
+          example: 1
+        eventId:
+          type: int
+          example: 1
+        userId:
+          type: int
+          example: 1
+        admits:
+          type: int
+          example: 2
+        isUsed:
+          type: boolean
+          example: false
+    Venue:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: int
+          example: 1
+        address:
+          type: string
+          example: 111 Arena Avenue
+        name:
+          type: string
+          example: The Arena
+        capacity:
+          type: int
+          example: 200
+        events:
+          type: array
+          example: null
+  responses:
+    BadRequest:
+      description: Invalid input
+      content:
+        applications/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+    NotFoundError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Item not found
+    UnauthorizedError:
+      description: Not authenticated
+    Forbidden:
+      description: 'Forbidden: insufficient permission'

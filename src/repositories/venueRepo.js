@@ -27,6 +27,7 @@ export async function findAllVenues(filter){
     return venues;
 }
 
+
 export async function findVenueByAddress(address) {
     return await prisma.venue.findUnique({
         where: {address},
@@ -75,7 +76,7 @@ export async function deleteVenue(id){
     const deletedVenue = await prisma.venue.delete({
       where: { id },
     });
-    return deleteVenue;
+    return deletedVenue;
   } catch (error) {
     if (error.code === 'P2025') return null;
     throw error;
