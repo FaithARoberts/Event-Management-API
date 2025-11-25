@@ -45,8 +45,11 @@ export const validateCreateEvent = [
     .bail()
     .trim()
     .escape()
-    .isDate({format: 'MM-DD-YYYY', strictMode: false})
-    .withMessage('Date must be in a valid format (MM-DD-YYYY)'),
+    .isISO8601()
+    .withMessage('Date must be in ISO date format (Ex: 2025-11-25T12:30:00.000Z)')
+    .customSanitizer((value) => {
+    const date = new Date(value);
+    return date.toISOString();}),
 
     body('name')
     .exists({ values: 'falsy'})
@@ -103,7 +106,7 @@ export const validateUpdateEvent = [
     .bail()
     .trim()
     .escape()
-    .isDate({format: 'MM-DD-YYYY', strictMode: false})
+    .isISO8601()
     .withMessage('Date must be in a valid format (MM-DD-YYYY)'),
 
     body('name')

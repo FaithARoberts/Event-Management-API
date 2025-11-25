@@ -9,7 +9,7 @@ export const validateVenueId = [
     handleValidationErrors,
 ];
 
-const allowedSortFields = ['name', 'events'];
+const allowedSortFields = ['id', 'name', 'events'];
 const allowedSortOrders = ['asc', 'desc'];
 
 export const validateVenueQuery = [

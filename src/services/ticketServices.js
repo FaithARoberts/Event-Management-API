@@ -1,4 +1,4 @@
-import {findAllTickets, findTicketsByEventId, findTicketById, createTicket, deleteTicket } from '../repositories/ticketRepo.js';
+import {findAllTickets, findTicketsByEventId, findTicketById, updateTicket, createTicket, deleteTicket } from '../repositories/ticketRepo.js';
 
 export async function getAllTickets(){
     return await findAllTickets();
@@ -30,7 +30,7 @@ export async function createNewTicket(newTicket){
 }
 
 export async function updateTicketById(id, data){
-    const updatedTicket = await updateTicketById(id, data);
+    const updatedTicket = await updateTicket(id, data);
     if(updatedTicket) return updatedTicket;
     else{
         const error = new Error(`Cannot find ticket with id ${id}`);

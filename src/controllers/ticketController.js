@@ -37,7 +37,7 @@ export async function updateTicketByIdHandler(req, res, next){
     if (req.body.isUsed) updates.isUsed = req.body.isUsed;
 
     const updatedTicket = await updateTicketById(id, updates);
-    res.status(204).json(updatedTicket);
+    res.status(201).json(updatedTicket);
 }
 
 export async function deleteTicketByIdHandler(req, res, next){

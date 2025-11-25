@@ -27,7 +27,7 @@ export async function getVenuesByAddressHandler(req, res, next){
 }
 
 export async function getVenuesByIdHandler(req, res, next){
-    const id = parseInt(req.param.id);
+    const id = parseInt(req.params.id);
     const venue = await getVenueById(id);
     res.status(200).json(venue);
 }
@@ -37,10 +37,12 @@ export async function createNewVenueHandler(req, res, next){
         address: req.body.address,
         name: req.body.name,
         capacity: req.body.capacity,
-        events: req.body.events
+        events: {
+           create: req.body.events
+        },
     }
-    const newVenue = await createNewVenue(data);
-    res.status(201).json(newVenue);
+    const updatedVenue = await createNewVenue(data);
+    res.status(201).json(updatedVenue);
 }
 
 export async function updateExistingVenueHandler(req, res, next){
@@ -51,8 +53,8 @@ export async function updateExistingVenueHandler(req, res, next){
     if (req.body.capacity) updates.capacity = req.body.capacity;
     if (req.body.events) updates.events = req.body.events;
 
-    const updatedVenue = await updateExistingVenue(id, updates);
-    res.status(204).json(updatedVenue);
+    const venue = await updateExistingVenue(id, updates);
+    res.status(201).json(venue);
 }
 
 export async function deleteVenueByIdHandler(req, res, next){

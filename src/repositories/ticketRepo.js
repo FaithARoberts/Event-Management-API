@@ -5,8 +5,8 @@ export async function findAllTickets(){
 }
 
 export async function findTicketsByEventId(eventId){
-    return await prisma.user.findUnique({
-        where: {eventId},
+    return await prisma.ticket.findUnique({
+        where: {id:eventId},
         select: {
             id: true,
             userId: true,
@@ -18,7 +18,7 @@ export async function findTicketsByEventId(eventId){
 }
 
 export async function findTicketById(id){
-    return await prisma.user.findUnique({
+    return await prisma.ticket.findUnique({
         where: {id},
         select: {
             id: true,
@@ -47,6 +47,10 @@ export async function updateTicket(id, data){
             isUsed: true
         }
         });
+        await prisma.user.update({
+            where: {id:req.user.id},
+            data: updatedTicket
+        })
         return updatedTicket;
     } catch (error) {
         if (error.code === 'P2025') return null;
@@ -56,7 +60,7 @@ export async function updateTicket(id, data){
 
 export async function deleteTicket(id){
     try {
-    const deletedTicket = await prisma.user.delete({
+    const deletedTicket = await prisma.ticket.delete({
       where: { id },
     });
     return deletedTicket;
