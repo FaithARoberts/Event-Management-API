@@ -1,0 +1,6 @@
+description: Not authenticated
+content: 
+  applications/json:
+    schema:
+      $ref: '../schemas/NotAuthenticatedError.yaml'
+      

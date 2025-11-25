@@ -50,6 +50,6 @@ post:
             items:
               $ref: ../components/schemas/Event.yaml
     '401':
-      $ref: ../components/responses/UnauthorizedError.yaml
+      $ref: ../components/responses/Unauthorized.yaml
     '403':
       $ref: ../components/responses/Forbidden.yaml

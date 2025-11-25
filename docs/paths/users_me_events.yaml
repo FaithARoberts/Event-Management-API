@@ -17,4 +17,4 @@ get:
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '404': 
-      $ref: ../components/schemas/NotFoundError.yaml
+      $ref: ../components/responses/NotFound.yaml

@@ -24,11 +24,11 @@ get:
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
-      $ref: ../components/responses/UnauthorizedError.yaml
+      $ref: ../components/responses/Unauthorized.yaml
     '403':
       $ref: ../components/responses/Forbidden.yaml
     '404': 
-      $ref: ../components/schemas/NotFoundError.yaml
+      $ref: ../components/responses/NotFound.yaml
 
 put:
   summary: updates the details of user by id
@@ -84,11 +84,11 @@ put:
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
-      $ref: ../components/responses/UnauthorizedError.yaml
+      $ref: ../components/responses/Unauthorized.yaml
     '403':
       $ref: ../components/responses/Forbidden.yaml
     '404': 
-      $ref: ../components/schemas/NotFoundError.yaml
+      $ref: ../components/responses/NotFound.yaml
 delete:
   summary: deletes user by id
   tags:
@@ -109,8 +109,8 @@ delete:
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
-      $ref: ../components/responses/UnauthorizedError.yaml
+      $ref: ../components/responses/Unauthorized.yaml
     '403':
       $ref: ../components/responses/Forbidden.yaml
     '404': 
-      $ref: ../components/schemas/NotFoundError.yaml
+      $ref: ../components/responses/NotFound.yaml

@@ -18,11 +18,11 @@ get:
           schema:
             type: array
             items:
-              $ref: ../components/schemas/ticket.yaml
+              $ref: ../components/schemas/Ticket.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '404': 
-      $ref: ../components/schemas/NotFoundError.yaml
+      $ref: ../components/responses/NotFound.yaml
 put:
   summary: updates the details of 1 ticket by id
   tags:
@@ -61,7 +61,7 @@ put:
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '404': 
-      $ref: ../components/schemas/NotFoundError.yaml
+      $ref: ../components/responses/NotFound.yaml
 delete:
   summary: deletes 1 ticket by id
   tags:
@@ -80,4 +80,4 @@ delete:
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '404': 
-      $ref: ../components/schemas/NotFoundError.yaml
+      $ref: ../components/responses/NotFound.yaml
