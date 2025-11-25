@@ -3,6 +3,8 @@ get:
   tags:
     - Tickets
   parameters:
+  security:
+    - bearerAuth: []
   responses:
     '200':
       description: OK
@@ -12,6 +14,8 @@ get:
             type: array
             items:
               $ref: ../components/schemas/Ticket.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
 post:
   summary: Create new ticket
   tags:
