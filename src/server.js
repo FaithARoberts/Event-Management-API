@@ -15,6 +15,12 @@ if (process.env.NODE_ENV === 'development') {
   const morgan = morganModule.default;
   app.use(morgan('tiny'));
 }
+const specs = YAML.load('./public/bundled.yaml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 app.use(express.json());
 app.use('/api/auth', authRoutes);
@@ -22,13 +28,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/tickets', ticketRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/venues', venueRoutes);
-
-const specs = YAML.load('./public/bundled.yaml');
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
-});
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
