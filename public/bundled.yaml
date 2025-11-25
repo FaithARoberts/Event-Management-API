@@ -94,7 +94,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     put:
       summary: updates the details of the current user
       tags:
@@ -142,7 +142,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: deletes the current user
       tags:
@@ -156,7 +156,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /users/me/ticket:
     get:
       summary: returns current user's tickets
@@ -177,7 +177,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /users/me/event:
     get:
       summary: returns current user's tickets
@@ -198,7 +198,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /users/{id}:
     get:
       summary: return user by id
@@ -226,11 +226,11 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     put:
       summary: updates the details of user by id
       tags:
@@ -285,11 +285,11 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: deletes user by id
       tags:
@@ -310,11 +310,11 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /tickets:
     get:
       summary: List all tickets
@@ -383,7 +383,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     put:
       summary: updates the details of 1 ticket by id
       tags:
@@ -422,7 +422,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: deletes 1 ticket by id
       tags:
@@ -441,7 +441,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /venues:
     get:
       summary: List all venues
@@ -495,7 +495,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Venue'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
   /venues/{id}:
@@ -523,7 +523,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     put:
       summary: updates the details of 1 venue by id
       tags:
@@ -571,11 +571,11 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: deletes 1 venue by id
       tags:
@@ -596,11 +596,11 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /events:
     get:
       summary: List all events
@@ -654,7 +654,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Event'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
   /events/{id}:
@@ -682,7 +682,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     put:
       summary: updates the details of 1 event by id
       tags:
@@ -730,11 +730,11 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: deletes 1 event by id
       tags:
@@ -755,11 +755,11 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /auth/login:
     post:
       summary: Log in to a user by email and password
@@ -887,6 +887,12 @@ components:
           type: array
           items:
             type: string
+    NotFoundError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Item not found
     Ticket:
       type: object
       properties:
@@ -977,13 +983,13 @@ components:
         applications/json:
           schema:
             $ref: '#/components/schemas/ValidationError'
-    NotFoundError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Item not found
-    UnauthorizedError:
+    NotFound:
+      description: Not Found
+      content:
+        applications/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    Unauthorized:
       description: Not authenticated
       content:
         applications/json:
