@@ -31,6 +31,8 @@ post:
         schema:
           type: integer
           example: 2
+  security:
+    - bearerAuth: []
   responses:
     '201':
       description: Created Successfully
@@ -40,3 +42,5 @@ post:
             type: array
             items:
               $ref: ../components/schemas/Ticket.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
