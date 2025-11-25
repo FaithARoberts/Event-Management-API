@@ -1,6 +1,5 @@
 import prisma from '../config/db.js';
 
-//get all events for admin
 export async function findAllEvents(filter) {
   const conditions = {};
 
@@ -96,7 +95,7 @@ export async function updateEvent(id, updates) {
 }
 
 //delete event by id
-export async function deletEvent (id) {
+export async function deleteEvent (id) {
     try {
         await prisma.event.delete({
             where: { id },

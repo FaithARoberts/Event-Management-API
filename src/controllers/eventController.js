@@ -20,7 +20,6 @@ export async function getAllEventsHandler(req, res) {
   res.status(200).json(result);
 }
 
-
 export async function getEventByVenueIdHandler(req,res,next){
     const venueId = parseInt(req.body.venueId);
     const venue = await getEventByVenueId(venueId);

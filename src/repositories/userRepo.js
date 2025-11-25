@@ -1,6 +1,5 @@
 import prisma from '../config/db.js';
 
-//get all users for admin
 export async function findAllUsers(){
     return await prisma.user.findMany({
         omit: {password: true},

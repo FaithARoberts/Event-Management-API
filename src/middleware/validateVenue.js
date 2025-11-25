@@ -1,5 +1,5 @@
-import { param, body, oneOf } from 'express-validator';
-import { handleValidationErrors } from './handleValidationErrors.js';
+import { param, body, oneOf, query } from 'express-validator';
+import { handleValidationErrors } from './handleValidationError.js';
 
 export const validateVenueId = [
     param('id')
@@ -8,6 +8,9 @@ export const validateVenueId = [
 
     handleValidationErrors,
 ];
+
+const allowedSortFields = ['name', 'events'];
+const allowedSortOrders = ['asc', 'desc'];
 
 export const validateVenueQuery = [
   query('search').optional().isString().withMessage('search must be a string'),
