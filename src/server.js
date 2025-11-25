@@ -21,7 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/tickets', ticketRoutes);
 app.use('/api/events', eventRoutes);
-app.use('/api/venue', venueRoutes);
+app.use('/api/venues', venueRoutes);
 
 const specs = YAML.load('./public/bundled.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));

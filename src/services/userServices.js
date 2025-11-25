@@ -1,4 +1,4 @@
-import {findAllUsers, findUserByRole, findUserById, updateUser, deleteUser, findUserTickets, findUserEvents} from '../repositories/userRepo.js';
+import {findAllUsers, findUserByRole, findUserById, updateUser, deleteUserById, findUserTickets, findUserEvents} from '../repositories/userRepo.js';
 import bcrypt from 'bcrypt';
 
 export async function getAllUsers(){
@@ -56,8 +56,8 @@ export async function updateUserById(id, data){
     }
 }
 
-export async function removeUser(id){
-    let result = await deleteUser(id);
+export async function removeUserById(id){
+    let result = await deleteUserById(id);
     if(result) return;
     else{
         const error = new Error(`Cannot find user with id ${id}`);

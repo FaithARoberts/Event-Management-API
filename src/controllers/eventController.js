@@ -28,8 +28,8 @@ export async function getEventByVenueIdHandler(req,res,next){
 
 export async function getEventByIdHandler(req,res,next){
     const id = parseInt(req.params.id);
-    const venue = await getEventById(id);
-    res.status(200).json(venue);
+    const event = await getEventById(id);
+    res.status(200).json(event);
 }
 
 export async function createNewEventHandler(req,res,next){
@@ -56,7 +56,7 @@ export async function updateExistingEventHandler(req,res,next){
     if (req.body.isPublished) updates.isPublished = req.body.isPublished;
 
     const updatedEvent = await updateExistingEvent(id, updates);
-    res.status(204).json(updatedEvent);
+    res.status(201).json(updatedEvent);
 }
 
 export async function deleteExistingEventHandler(req,res,next){

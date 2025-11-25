@@ -60,8 +60,8 @@ export async function createEvent(data) {
 
 //get events by event id
 export async function findEventById(eventId) {
-    return await prisma.venue.findUnique({
-        where: { eventId },
+    return await prisma.event.findUnique({
+        where: { id:eventId },
         select: {
             id: true,
             venueId: true,
@@ -81,11 +81,11 @@ export async function updateEvent(id, updates) {
             data: updates,
             select: {
                 id: true,
-            venueId: true,
-            name: true,
-            date: true,
-            capacity: true,
-            isPublished: true,
+                venueId: true,
+                name: true,
+                date: true,
+                capacity: true,
+                isPublished: true,
             },
         });
     } catch (err) {

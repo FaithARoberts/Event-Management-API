@@ -10,7 +10,7 @@ export async function findAllVenues(filter){
       ];
     }
 
-    const venues = await prisma.event.findMany({
+    const venues = await prisma.venue.findMany({
       where: conditions,
       select: {
           id: true,
@@ -64,7 +64,7 @@ export async function updateVenue(id, venueInfo){
       where: { id },
       data: venueInfo,
     });
-    return updateVenue;
+    return updatedVenue;
   } catch (error) {
     if (error.code === 'P2025') return null;
     throw error;
@@ -76,7 +76,7 @@ export async function deleteVenue(id){
     const deletedVenue = await prisma.venue.delete({
       where: { id },
     });
-    return deleteVenue;
+    return deletedVenue;
   } catch (error) {
     if (error.code === 'P2025') return null;
     throw error;

@@ -1,9 +1,7 @@
 import prisma from '../config/db.js';
 
 export async function findAllUsers(){
-    return await prisma.user.findMany({
-        omit: {password: true},
-    });
+    return await prisma.user.findMany();
 }
 
 //get users by role
@@ -16,6 +14,8 @@ export async function findUserByRole(role) {
             lastName: true,
             email: true,
             role: true,
+            tickets: true,
+            events: true,
             
         },
     });
@@ -23,7 +23,7 @@ export async function findUserByRole(role) {
 
 //get user by id
 export async function findUserById(id) {
-    return await prisma.venue.findUnique({
+    return await prisma.user.findUnique({
         where: { id },
         select: {
             id: true,
@@ -31,6 +31,8 @@ export async function findUserById(id) {
             lastName: true,
             email: true,
             role: true,
+            tickets: true,
+            events: true,
         }
     });
 }
@@ -47,6 +49,8 @@ export async function updateUser(id, updates) {
                 lastName: true,
                 email: true,
                 role: true,
+                tickets: true,
+                events: true,
             },
         });
     } catch (err) {
@@ -56,7 +60,7 @@ export async function updateUser(id, updates) {
 }
 
 //delete user by id
-export async function deleteUser(id) {
+export async function deleteUserById(id) {
     try {
         await prisma.user.delete({
             where: { id },
@@ -71,7 +75,7 @@ export async function deleteUser(id) {
 //Get User ticket
 export async function findUserTickets(id) {
     return await prisma.ticket.findMany({
-        where: {userId:id},
+        where: {id},
         select: {
             id: true,
             eventId: true,
@@ -83,8 +87,8 @@ export async function findUserTickets(id) {
 }
 //find events for user with role planner only
 export async function findUserEvents(id) {
-    return await prisma.user.findMany({
-        where: {userId:id},
+    return await prisma.event.findMany({
+        where: {id},
         select: {
             id: true,
             date: true,
