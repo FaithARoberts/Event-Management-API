@@ -3,6 +3,41 @@ get:
   tags:
     - Tickets
   parameters:
+    - name: search
+      in: query
+      required: false
+      description: search by parameters
+      schema:
+        type: string
+        example: '01/11/11'
+    - name: sortBy
+      in: query
+      required: false
+      description: parameter to sort by
+      schema:
+        type: string
+        example: id
+    - name: sortOrder
+      in: query
+      required: false
+      description: ascending or descending
+      schema:
+        type: string
+        example: asc
+    - name: limit
+      in: query
+      required: false
+      description: Maximum number of tickets to return
+      schema:
+        type: integer
+        example: 100
+    - name: offset
+      in: query
+      required: false
+      description: number to offset results by from the start
+      schema:
+        type: integer
+        example: 0
   security:
     - bearerAuth: []
   responses:
