@@ -84,7 +84,7 @@ post:
         required: true
         description: password of new user
         schema:
-          type: integer
+          type: string
           example: 1234Doe
   responses:
     '201':
