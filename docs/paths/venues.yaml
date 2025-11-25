@@ -3,6 +3,43 @@ get:
   tags:
     - Venues
   parameters:
+    - name: search
+      in: query
+      required: false
+      description: search by parameters
+      schema:
+        type: string
+        example: 'Arena'
+    - name: sortBy
+      in: query
+      required: false
+      description: parameter to sort by
+      schema:
+        type: string
+        example: id
+    - name: sortOrder
+      in: query
+      required: false
+      description: ascending or descending
+      schema:
+        type: string
+        example: asc
+    - name: limit
+      in: query
+      required: false
+      description: Maximum number of venues to return
+      schema:
+        type: integer
+        example: 100
+    - name: offset
+      in: query
+      required: false
+      description: number to offset results by from the start
+      schema:
+        type: integer
+        example: 0
+  security:
+    - bearerAuth: []
   responses:
     '200':
       description: OK
@@ -12,6 +49,8 @@ get:
             type: array
             items:
               $ref: ../components/schemas/Venue.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
 post:
   summary: Create new venue
   tags:

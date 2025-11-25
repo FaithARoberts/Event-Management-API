@@ -22,7 +22,44 @@ paths:
       summary: List all users
       tags:
         - Users
-      parameters: null
+      parameters:
+        - name: search
+          in: query
+          required: false
+          description: search by parameters
+          schema:
+            type: string
+            example: John
+        - name: sortBy
+          in: query
+          required: false
+          description: parameter to sort by
+          schema:
+            type: string
+            example: id
+        - name: sortOrder
+          in: query
+          required: false
+          description: ascending or descending
+          schema:
+            type: string
+            example: asc
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of users to return
+          schema:
+            type: integer
+            example: 100
+        - name: offset
+          in: query
+          required: false
+          description: number to offset results by from the start
+          schema:
+            type: integer
+            example: 0
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -32,6 +69,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
     post:
       summary: Create new User
       tags:
@@ -320,7 +361,44 @@ paths:
       summary: List all tickets
       tags:
         - Tickets
-      parameters: null
+      parameters:
+        - name: search
+          in: query
+          required: false
+          description: search by parameters
+          schema:
+            type: string
+            example: 01/11/11
+        - name: sortBy
+          in: query
+          required: false
+          description: parameter to sort by
+          schema:
+            type: string
+            example: id
+        - name: sortOrder
+          in: query
+          required: false
+          description: ascending or descending
+          schema:
+            type: string
+            example: asc
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of tickets to return
+          schema:
+            type: integer
+            example: 100
+        - name: offset
+          in: query
+          required: false
+          description: number to offset results by from the start
+          schema:
+            type: integer
+            example: 0
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -330,6 +408,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Ticket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
     post:
       summary: Create new ticket
       tags:
@@ -349,6 +429,8 @@ paths:
           schema:
             type: integer
             example: 2
+      security:
+        - bearerAuth: []
       responses:
         '201':
           description: Created Successfully
@@ -358,6 +440,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Ticket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /tickets/{id}:
     get:
       summary: returns 1 ticket by id
@@ -371,6 +455,8 @@ paths:
           schema:
             type: integer
             example: 1
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -382,6 +468,8 @@ paths:
                   $ref: '#/components/schemas/Ticket'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
     put:
@@ -410,6 +498,8 @@ paths:
           schema:
             type: integer
             example: 2
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -421,6 +511,8 @@ paths:
                   $ref: '#/components/schemas/Ticket'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
     delete:
@@ -435,11 +527,15 @@ paths:
           schema:
             type: integer
             example: 1
+      security:
+        - bearerAuth: []
       responses:
         '204':
           description: NO CONTENT
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
   /venues:
@@ -447,7 +543,44 @@ paths:
       summary: List all venues
       tags:
         - Venues
-      parameters: null
+      parameters:
+        - name: search
+          in: query
+          required: false
+          description: search by parameters
+          schema:
+            type: string
+            example: Arena
+        - name: sortBy
+          in: query
+          required: false
+          description: parameter to sort by
+          schema:
+            type: string
+            example: id
+        - name: sortOrder
+          in: query
+          required: false
+          description: ascending or descending
+          schema:
+            type: string
+            example: asc
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of venues to return
+          schema:
+            type: integer
+            example: 100
+        - name: offset
+          in: query
+          required: false
+          description: number to offset results by from the start
+          schema:
+            type: integer
+            example: 0
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -457,6 +590,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Venue'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
     post:
       summary: Create new venue
       tags:
@@ -511,6 +646,8 @@ paths:
           schema:
             type: integer
             example: 1
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -522,6 +659,8 @@ paths:
                   $ref: '#/components/schemas/Venue'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
     put:
@@ -606,7 +745,44 @@ paths:
       summary: List all events
       tags:
         - Events
-      parameters: null
+      parameters:
+        - name: search
+          in: query
+          required: false
+          description: search by parameters
+          schema:
+            type: string
+            example: Concert
+        - name: sortBy
+          in: query
+          required: false
+          description: parameter to sort by
+          schema:
+            type: string
+            example: id
+        - name: sortOrder
+          in: query
+          required: false
+          description: ascending or descending
+          schema:
+            type: string
+            example: asc
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of events to return
+          schema:
+            type: integer
+            example: 100
+        - name: offset
+          in: query
+          required: false
+          description: number to offset results by from the start
+          schema:
+            type: integer
+            example: 0
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -616,6 +792,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Event'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
     post:
       summary: Create new event
       tags:
@@ -670,6 +848,8 @@ paths:
           schema:
             type: integer
             example: 1
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -681,6 +861,8 @@ paths:
                   $ref: '#/components/schemas/Event'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
     put:
@@ -877,6 +1059,26 @@ components:
         role:
           type: string
           example: USER
+    NotAuthenticatedError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Not authenticated
+        details:
+          type: array
+          items:
+            type: string
+    ForbiddenError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Not authenticated
+        details:
+          type: array
+          items:
+            type: string
     ValidationError:
       type: object
       properties:
@@ -937,26 +1139,6 @@ components:
         isPublished:
           type: boolean
           example: false
-    NotAuthenticatedError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Not authenticated
-        details:
-          type: array
-          items:
-            type: string
-    ForbiddenError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Not authenticated
-        details:
-          type: array
-          items:
-            type: string
     Venue:
       type: object
       properties:
@@ -977,18 +1159,6 @@ components:
           type: array
           example: null
   responses:
-    BadRequest:
-      description: Invalid input
-      content:
-        applications/json:
-          schema:
-            $ref: '#/components/schemas/ValidationError'
-    NotFound:
-      description: Not Found
-      content:
-        applications/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     Unauthorized:
       description: Not authenticated
       content:
@@ -1001,3 +1171,15 @@ components:
         applications/json:
           schema:
             $ref: '#/components/schemas/ForbiddenError'
+    BadRequest:
+      description: Invalid input
+      content:
+        applications/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+    NotFound:
+      description: Not Found
+      content:
+        applications/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'

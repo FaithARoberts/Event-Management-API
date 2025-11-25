@@ -10,6 +10,8 @@ get:
       schema:
         type: integer
         example: 1
+  security:
+    - bearerAuth: []
   responses: 
     '200':
       description: OK
@@ -21,6 +23,8 @@ get:
               $ref: ../components/schemas/Ticket.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
     '404': 
       $ref: ../components/responses/NotFound.yaml
 put:
@@ -49,6 +53,8 @@ put:
       schema:
         type: integer
         example: 2
+  security:
+    - bearerAuth: []
   responses: 
     '200':
       description: OK
@@ -60,6 +66,8 @@ put:
               $ref: ../components/schemas/Ticket.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
     '404': 
       $ref: ../components/responses/NotFound.yaml
 delete:
@@ -74,10 +82,14 @@ delete:
       schema:
         type: integer
         example: 1
+  security:
+    - bearerAuth: []
   responses: 
     '204':
       description: NO CONTENT
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
     '404': 
       $ref: ../components/responses/NotFound.yaml
