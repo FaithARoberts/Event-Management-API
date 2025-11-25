@@ -104,7 +104,7 @@ paths:
           required: true
           description: password of new user
           schema:
-            type: integer
+            type: string
             example: 1234Doe
       responses:
         '201':
@@ -1016,7 +1016,7 @@ paths:
           required: true
           description: password of new user
           schema:
-            type: integer
+            type: string
             example: 1234Doe
       responses:
         '201':
